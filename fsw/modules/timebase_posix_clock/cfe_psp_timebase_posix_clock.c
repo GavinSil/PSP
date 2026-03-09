@@ -43,6 +43,7 @@
 
 #include "cfe_psp.h"
 #include "cfe_psp_module.h"
+#include "../sim_stepping/cfe_psp_sim_stepping.h"
 
 /*
  * The specific clock ID to use with clock_gettime
@@ -82,11 +83,24 @@ void CFE_PSP_Get_Timebase(uint32 *Tbu, uint32 *Tbl)
 {
     struct timespec now;
 
-    if (clock_gettime(CFE_PSP_TIMEBASE_REF_CLOCK, &now) != 0)
+#ifdef CFE_SIM_STEPPING
+    uint64_t sim_time_ns;
+    if (CFE_PSP_SimStepping_Hook_GetTime(&sim_time_ns))
     {
-        /* unlikely - but avoids undefined behavior */
-        now.tv_sec  = 0;
-        now.tv_nsec = 0;
+        /* Simulation time was provided - use it instead of wall-clock */
+        now.tv_sec  = sim_time_ns / 1000000000UL;
+        now.tv_nsec = sim_time_ns % 1000000000UL;
+    }
+    else
+#endif
+    {
+        /* Use wall-clock time */
+        if (clock_gettime(CFE_PSP_TIMEBASE_REF_CLOCK, &now) != 0)
+        {
+            /* unlikely - but avoids undefined behavior */
+            now.tv_sec  = 0;
+            now.tv_nsec = 0;
+        }
     }
 
     *Tbu = now.tv_sec & 0xFFFFFFFF;
@@ -105,11 +119,24 @@ void CFE_PSP_GetTime(OS_time_t *LocalTime)
 {
     struct timespec now;
 
-    if (clock_gettime(CFE_PSP_TIMEBASE_REF_CLOCK, &now) != 0)
+#ifdef CFE_SIM_STEPPING
+    uint64_t sim_time_ns;
+    if (CFE_PSP_SimStepping_Hook_GetTime(&sim_time_ns))
     {
-        /* unlikely - but avoids undefined behavior */
-        now.tv_sec  = 0;
-        now.tv_nsec = 0;
+        /* Simulation time was provided - use it instead of wall-clock */
+        now.tv_sec  = sim_time_ns / 1000000000UL;
+        now.tv_nsec = sim_time_ns % 1000000000UL;
+    }
+    else
+#endif
+    {
+        /* Use wall-clock time */
+        if (clock_gettime(CFE_PSP_TIMEBASE_REF_CLOCK, &now) != 0)
+        {
+            /* unlikely - but avoids undefined behavior */
+            now.tv_sec  = 0;
+            now.tv_nsec = 0;
+        }
     }
 
     *LocalTime = OS_TimeAssembleFromNanoseconds(now.tv_sec, now.tv_nsec);
