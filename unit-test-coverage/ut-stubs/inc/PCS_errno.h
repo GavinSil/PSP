@@ -56,6 +56,7 @@
 /* POSIX-specific  errnos */
 #define PCS_EINTR     0x1801
 #define PCS_EAGAIN    0x1802
+#define PCS_EWOULDBLOCK PCS_EAGAIN
 #define PCS_EEXIST    0x180a
 #define PCS_EINVAL    0x1803
 #define PCS_EMSGSIZE  0x1804

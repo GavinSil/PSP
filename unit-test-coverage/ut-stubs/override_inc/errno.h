@@ -55,6 +55,7 @@
 /* ----------------------------------------- */
 #define EINTR     PCS_EINTR
 #define EAGAIN    PCS_EAGAIN
+#define EWOULDBLOCK PCS_EWOULDBLOCK
 #define EINVAL    PCS_EINVAL
 #define EEXIST    PCS_EEXIST
 #define EMSGSIZE  PCS_EMSGSIZE

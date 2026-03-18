@@ -45,5 +45,6 @@ struct PCS_timespec
 /* ----------------------------------------- */
 int PCS_clock_settime(int clk_id, struct PCS_timespec *t);
 int PCS_clock_gettime(int clk_id, struct PCS_timespec *t);
+int PCS_nanosleep(const struct PCS_timespec *rqtp, struct PCS_timespec *rmtp);
 
 #endif

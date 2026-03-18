@@ -22,4 +22,7 @@
 
 #include "PCS_time.h"
 
+#define timespec  PCS_timespec
+#define nanosleep PCS_nanosleep
+
 #endif

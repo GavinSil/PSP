@@ -29,6 +29,7 @@
 #define SEEK_SET      PCS_SEEK_SET
 #define SEEK_CUR      PCS_SEEK_CUR
 #define SEEK_END      PCS_SEEK_END
+#define ssize_t       PCS_ssize_t
 #define STDIN_FILENO  PCS_STDIN_FILENO
 #define STDOUT_FILENO PCS_STDOUT_FILENO
 #define STDERR_FILENO PCS_STDERR_FILENO
@@ -44,6 +45,8 @@
 #define read        PCS_read
 #define rmdir       PCS_rmdir
 #define sysconf     PCS_sysconf
+#define unlink      PCS_unlink
+#define usleep      PCS_usleep
 #define write       PCS_write
 
 #endif

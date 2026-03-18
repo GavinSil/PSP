@@ -60,3 +60,15 @@ int PCS_clock_settime(int clk_id, struct PCS_timespec *t)
 
     return UT_GenStub_GetReturnValue(PCS_clock_settime, int);
 }
+
+int PCS_nanosleep(const struct PCS_timespec *rqtp, struct PCS_timespec *rmtp)
+{
+    UT_GenStub_SetupReturnBuffer(PCS_nanosleep, int);
+
+    UT_GenStub_AddParam(PCS_nanosleep, const struct PCS_timespec *, rqtp);
+    UT_GenStub_AddParam(PCS_nanosleep, struct PCS_timespec *, rmtp);
+
+    UT_GenStub_Execute(PCS_nanosleep, Basic, NULL);
+
+    return UT_GenStub_GetReturnValue(PCS_nanosleep, int);
+}

@@ -187,6 +187,28 @@ int PCS_rmdir(const char *path)
     return UT_GenStub_GetReturnValue(PCS_rmdir, int);
 }
 
+int PCS_unlink(const char *path)
+{
+    UT_GenStub_SetupReturnBuffer(PCS_unlink, int);
+
+    UT_GenStub_AddParam(PCS_unlink, const char *, path);
+
+    UT_GenStub_Execute(PCS_unlink, Basic, NULL);
+
+    return UT_GenStub_GetReturnValue(PCS_unlink, int);
+}
+
+int PCS_usleep(uint32_t usec)
+{
+    UT_GenStub_SetupReturnBuffer(PCS_usleep, int);
+
+    UT_GenStub_AddParam(PCS_usleep, uint32_t, usec);
+
+    UT_GenStub_Execute(PCS_usleep, Basic, NULL);
+
+    return UT_GenStub_GetReturnValue(PCS_usleep, int);
+}
+
 /*
  * ----------------------------------------------------
  * Generated stub function for PCS_sysconf()

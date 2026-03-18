@@ -52,6 +52,8 @@ extern PCS_pid_t   PCS_getpid(void);
 extern PCS_off_t   PCS_lseek(int fd, PCS_off_t offset, int whence);
 extern PCS_ssize_t PCS_read(int fd, void *buf, size_t nbytes);
 extern int         PCS_rmdir(const char *path);
+extern int         PCS_unlink(const char *path);
+extern int         PCS_usleep(uint32_t usec);
 extern long int    PCS_sysconf(int name);
 extern PCS_ssize_t PCS_write(int fd, const void *buf, size_t nbytes);
 
