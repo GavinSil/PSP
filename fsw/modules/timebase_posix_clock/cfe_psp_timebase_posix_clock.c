@@ -43,7 +43,9 @@
 
 #include "cfe_psp.h"
 #include "cfe_psp_module.h"
+#ifdef CFE_SIM_STEPPING
 #include "cfe_psp_sim_stepping.h"
+#endif
 
 /*
  * The specific clock ID to use with clock_gettime
