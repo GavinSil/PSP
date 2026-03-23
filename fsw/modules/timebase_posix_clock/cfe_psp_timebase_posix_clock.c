@@ -44,7 +44,7 @@
 #include "cfe_psp.h"
 #include "cfe_psp_module.h"
 #ifdef CFE_SIM_STEPPING
-#include "cfe_psp_sim_stepping.h"
+#include "esa_stepping.h"
 #endif
 
 /*
@@ -87,7 +87,7 @@ void CFE_PSP_Get_Timebase(uint32 *Tbu, uint32 *Tbl)
 
 #ifdef CFE_SIM_STEPPING
     uint64_t sim_time_ns;
-    if (CFE_PSP_SimStepping_Hook_GetTime(&sim_time_ns))
+    if (ESA_Stepping_Hook_GetTime(&sim_time_ns))
     {
         /* Simulation time was provided - use it instead of wall-clock */
         now.tv_sec  = sim_time_ns / 1000000000UL;
@@ -123,7 +123,7 @@ void CFE_PSP_GetTime(OS_time_t *LocalTime)
 
 #ifdef CFE_SIM_STEPPING
     uint64_t sim_time_ns;
-    if (CFE_PSP_SimStepping_Hook_GetTime(&sim_time_ns))
+    if (ESA_Stepping_Hook_GetTime(&sim_time_ns))
     {
         /* Simulation time was provided - use it instead of wall-clock */
         now.tv_sec  = sim_time_ns / 1000000000UL;

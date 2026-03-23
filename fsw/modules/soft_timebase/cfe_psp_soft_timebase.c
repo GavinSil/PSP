@@ -76,7 +76,7 @@ void soft_timebase_Init(uint32 PspModuleId)
      * The timebase object is created (via OS_TimeBaseCreate) for discovery
      * purposes, but OS_TimeBaseSet is NOT called, so no periodic scheduling
      * occurs. Time retrieval in stepping mode is sourced from the sim_stepping
-     * module via the CFE_PSP_SimStepping_Hook_GetTime() path in
+     * module via the ESA_Stepping_Hook_GetTime() path in
      * timebase_posix_clock.c.
      */
     if (status == OS_SUCCESS)
